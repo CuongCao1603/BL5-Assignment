@@ -1,9 +1,9 @@
-
+    
 <div class="container-fluid"
      style="height: 10px; background-color: #303f9f">
     
 </div>
-<div class="container-fluid p-3">
+<div class="container-fluid p-3 bg-light">
     <div class="row">
         <div class="col-md-3 text-success">
             <h3>
@@ -18,8 +18,8 @@
         </div>
         
         <div class="col-md-3">
-            <a href="" class="btn btn-success">Login</a>
-            <a href="" class="btn btn-primary text-white">Register</a>
+            <a href="login.jsp" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Login</a>
+            <a href="register.jsp" class="btn btn-primary text-white"><i class="fas fa-user-plus"></i> Register</a>
         </div>
     </div>    
 
