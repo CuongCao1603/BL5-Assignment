@@ -31,6 +31,7 @@
             <h2 class="text-center text-danger">KitchenWare Shop</h2>
         </div>
         
+     
         <!--Start Recent Product-->
         <div class="container">
             <h3 class="text-center">Recent Product</h3>
