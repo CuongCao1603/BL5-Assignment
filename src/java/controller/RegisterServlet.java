@@ -12,6 +12,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.User;
 
 /**
@@ -78,17 +79,25 @@ public class RegisterServlet extends HttpServlet {
             String phno = request.getParameter("phno");
             String password = request.getParameter("password");
             String check = request.getParameter("check");
+            
+            HttpSession session=request.getSession();
+            
 
 //            System.out.println(name+" "+email+" "+phno+" "+password+" "+check);
-            User us = new User();
-            us.setName(name);
-            us.setEmail(email);
-            us.setPhno(phno);
-            us.setPassword(password);
-
-            UserDAOImpl dao = new UserDAOImpl();
-            dao.userRegister(name,email,phno,password);
-           
+//            User us = new User();
+//            us.setName(name);
+//            us.setEmail(email);
+//            us.setPhno(phno);
+//            us.setPassword(password);
+            if (check != null) {
+                UserDAOImpl dao = new UserDAOImpl();
+                dao.userRegister(name, email, phno, password);
+                session.setAttribute("succMsg", "Registration Successfully.");
+                response.sendRedirect("register.jsp");
+            } else{
+                session.setAttribute("failedMsg", "Please Check Agree & Terms Condition");
+                response.sendRedirect("register.jsp");
+            }
 
         } catch (Exception e) {
         }

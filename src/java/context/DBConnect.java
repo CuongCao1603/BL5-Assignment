@@ -34,5 +34,12 @@ public class DBConnect {
     private final String portNumber = "1433";
     private final String userID = "sa";
     private final String password = "123";
+    
+//    public static void main(String[] args) {
+//        try {
+//            System.out.println(new DBConnect().getConnection());
+//        } catch (Exception e) {
+//        }
+//    }
    
 }

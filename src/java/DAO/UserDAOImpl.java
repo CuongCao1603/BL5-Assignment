@@ -29,7 +29,7 @@ public class UserDAOImpl {
 
 //   
     public void userRegister(String name,String email,String phno,String password) {
-        String sql = "insert into user(name,email,phno,password) values(?,?,?,?)";
+        String sql = "insert into [user] values(?,?,?,?,?,?,?,?,?)";
 //        boolean f = false;
         try {
 
@@ -39,6 +39,11 @@ public class UserDAOImpl {
             ps.setString(2, email);
             ps.setString(3, phno);
             ps.setString(4, password);
+            ps.setString(5, "NULL");
+            ps.setString(6, "NULL");
+            ps.setString(7, "NULL");
+            ps.setString(8, "NULL");
+            ps.setString(9, "NULL");
 
             ps.executeUpdate();
             System.err.println("tai len data");
