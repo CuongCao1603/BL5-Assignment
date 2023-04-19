@@ -87,7 +87,7 @@ public class LoginServlet extends HttpServlet {
             if ("admin@gmail.com".equals(email) && "admin".equals(password)) {
                 User us=new User();
                 session.setAttribute("userobj", us);
-                response.sendRedirect("admin/home.jsp");
+                response.sendRedirect("admin/adminHome.jsp");
             } else {
                 dao.login(email, password);
                 
