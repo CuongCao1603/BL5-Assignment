@@ -30,7 +30,7 @@
             <div class="row p-5">
                 <div class="col-md-3">
 
-                    <a href="add_product.jsp">
+                    <a href="add_products.jsp">
                         <div class="card">
                             <div class="card-body text-center">
                                 <i class="fas fa-plus-square fa-3x text-primary"></i><br>

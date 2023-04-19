@@ -52,6 +52,7 @@ public class UserDAOImpl {
             ps.executeUpdate();
             System.err.println("tai len data");
         } catch (Exception e) {
+            e.printStackTrace();
         }
 
     }

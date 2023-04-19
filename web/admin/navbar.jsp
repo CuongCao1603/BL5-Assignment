@@ -1,7 +1,7 @@
     
 <div class="container-fluid"
      style="height: 10px; background-color: #303f9f">
-    
+
 </div>
 <div class="container-fluid p-3 bg-light">
     <div class="row">
@@ -16,7 +16,7 @@
                 <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
             </form>
         </div>
-        
+
         <div class="col-md-3">
             <a href="login.jsp" class="btn btn-success"><i class="fas fa-sign-in-alt"></i> Login</a>
             <a href="register.jsp" class="btn btn-primary text-white"><i class="fas fa-user-plus"></i> Register</a>
@@ -36,7 +36,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="adminHome.jsp">Home <span class="sr-only">(current)</span></a>
             </li>
-            
-        </form>
+
+            </form>
     </div>
 </nav>

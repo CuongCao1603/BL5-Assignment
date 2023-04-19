@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -20,13 +21,23 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="text-center">Add Books</h4>
-                            <form action="../AdminAddProductServlet" method="post"
+
+                            <c:if test="${not empty succMsg}">
+                                <p class="text-center text-success">${succMsg}</p>
+                                <c:remove var="succMsg" scope="session"/>
+                            </c:if>
+
+                            <c:if test="${not empty failedMsg}">
+                                <p class="text-center text-danger">${failedMsg}</p>
+                                <c:remove var="failedMsg" scope="session"/>
+                            </c:if>
+                            <form action="../addproduct" method="post"
                                   enctype="multipart/form-data">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">
                                         Product Name*
                                     </label>
-                                    <input name="bname" type="text" class="form-control"
+                                    <input name="pname" type="text" class="form-control"
                                            id="exampleInputEmail1" aria-describedby="emailHelp">
                                 </div>
                                 <div class="form-group">
@@ -43,30 +54,31 @@
                                     <input name="price" type="text" class="form-control"
                                            id="exampleInputPassword1">
                                 </div>
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label for="inputState">
                                         Product Categories
                                     </label>
-                                     <select id="inputState" name="btype" class="form-control">
-                                         <option selected="">--select--</option>
-                                         <option value="New">New Book</option>
-                                     </select>
+                                    <select id="inputState" name="categories" class="form-control">
+                                        <option selected="">--select--</option>
+                                        <option value="New">New Product</option>
+                                        <option value="Old">Old Product</option>
+                                    </select>
                                 </div>
-                                 <div class="form-group">
+                                <div class="form-group">
                                     <label for="exampleInputEmail1">
                                         Product Status
                                     </label>
-                                    <select id="inputState" name="btype" class="form-control">
-                                         <option selected="">--select--</option>
-                                         <option value="Active">Active</option>
-                                         <option value="Inactive">Inactive</option>
-                                     </select>
+                                    <select id="inputState" name="status" class="form-control">
+                                        <option selected="">--select--</option>
+                                        <option value="Active">Active</option>
+                                        <option value="Inactive">Inactive</option>
+                                    </select>
                                 </div>
-                                 <div class="form-group">   
+                                <div class="form-group">   
                                     <label for="exampleFormControlFile1">
                                         Upload Photo
                                     </label>
-                                    <input name="bimg" type="file" class="form-control-file"
+                                    <input name="pimg" type="file" class="form-control-file"
                                            id="exampleFormControlFile1" >
                                 </div>
                                 <button type="submit" class="btn btn-primary">Add</button>
