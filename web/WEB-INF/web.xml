@@ -12,6 +12,14 @@
         <servlet-name>AddProductServlet</servlet-name>
         <servlet-class>adminController.AddProductServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditProductsServlet</servlet-name>
+        <servlet-class>controller.EditProductsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductsDeleteServlet</servlet-name>
+        <servlet-class>controller.ProductsDeleteServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>AddProductServlet</servlet-name>
         <url-pattern>/addproduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductsServlet</servlet-name>
+        <url-pattern>/editproducts</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductsDeleteServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

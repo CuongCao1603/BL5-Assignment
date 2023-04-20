@@ -82,4 +82,83 @@ public class ProductDAOImpl implements ProductDAO {
         return list;
     }
 
+    @Override
+    public ProductDtls getProductById(int id) {
+//        ProductDtls b=null;
+        String sql = "select * FROM [dbo].[product_dtls] where productId=?";
+        try {
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return new ProductDtls(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8));
+            }
+
+        } catch (Exception e) {
+        }
+        return null;
+    }
+
+    @Override
+    public boolean updateEditProducts(ProductDtls p) {
+        boolean f = false;
+        String sql = "UPDATE [dbo].[product_dtls]\n"
+                + "   SET [productName] = ?\n"
+                + "      ,[madeIn] = ?\n"
+                + "      ,[price] = ?\n"
+                + "      ,[productCategory] = ?\n"
+                + "      ,[status] = ?\n"
+                //                + "      ,[photo] = ?\n"
+                //                + "      ,[email] = ?\n"
+                + " WHERE productID=?";
+        try {
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, p.getProductName());
+            ps.setString(2, p.getMadeIn());
+            ps.setString(3, p.getPrice());
+            ps.setString(4, p.getProductCategory());
+            ps.setString(5, p.getStatus());
+//            ps.setString(6, p.getPhotoName());
+//            ps.setString(7, p.getEmail());
+            ps.setInt(6, p.getProductId());
+
+            int i = ps.executeUpdate();
+            if (i == 1) {
+                f = true;
+            }
+
+        } catch (Exception e) {
+        }
+
+        return f;
+    }
+
+    public boolean deleteBooks(int id) {
+        boolean f = false;
+        String sql = "DELETE FROM [dbo].[product_dtls]\n"
+                + "      WHERE productId=? ";
+        try {
+            conn=new DBConnect().getConnection();
+            ps=conn.prepareStatement(sql);
+            ps.setInt(1, id);
+            
+            int i=ps.executeUpdate();
+            if(i==1){
+                f=true;
+            }
+        } catch (Exception e) {
+        }
+
+        return f;
+    }
+
 }

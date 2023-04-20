@@ -15,6 +15,9 @@ import DAO.ProductDAOImpl;
 public interface ProductDAO {
     public boolean addProduct(ProductDtls p);
     public List<ProductDtls> getAllProduct();
+    public ProductDtls getProductById(int id);
+    public boolean updateEditProducts(ProductDtls p);
+    public boolean deleteBooks(int id);
     
     
 }
