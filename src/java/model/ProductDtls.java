@@ -33,6 +33,17 @@ public class ProductDtls {
         this.email = email;
     }
 
+    public ProductDtls(int productId, String productName, String madeIn, String price, String productCategory, String status, String photoName, String email) {
+        this.productId = productId;
+        this.productName = productName;
+        this.madeIn = madeIn;
+        this.price = price;
+        this.productCategory = productCategory;
+        this.status = status;
+        this.photoName = photoName;
+        this.email = email;
+    }
+
     public int getProductId() {
         return productId;
     }

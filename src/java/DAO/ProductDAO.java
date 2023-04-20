@@ -4,7 +4,9 @@
  */
 package DAO;
 
+import java.util.List;
 import model.ProductDtls;
+import DAO.ProductDAOImpl;
 
 /**
  *
@@ -12,5 +14,7 @@ import model.ProductDtls;
  */
 public interface ProductDAO {
     public boolean addProduct(ProductDtls p);
+    public List<ProductDtls> getAllProduct();
+    
     
 }

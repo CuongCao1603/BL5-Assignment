@@ -96,7 +96,6 @@ public class AddProductServlet extends HttpServlet {
 //                part.write(path + File.separator + fileName);
 
             boolean f = dao.addProduct(p);
-
             HttpSession session = request.getSession();
 
             if (f) {

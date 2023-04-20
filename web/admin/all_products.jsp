@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="DAO.ProductDAOImpl" %>
+<%@page import="model.ProductDtls" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -18,7 +21,7 @@
         <table class="table table-striped">
             <thead class="bg-primary text-white">
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Product Name</th>
                     <th scope="col">Made in</th>
                     <th scope="col">Price</th>
@@ -28,43 +31,29 @@
                 </tr>
             </thead>
             <tbody>
+                
+                <%
+                ProductDAOImpl dao=new ProductDAOImpl();
+                List<ProductDtls> list=dao.getAllProduct();
+                for(ProductDtls b:list){
+                %>
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
+                    <td><%=b.getProductId()%></td>
+                    <td><img src="../kithchenware/<%=b.getPhotoName()%>"
+                             style="width: 50px;height: 50px;"></td>
+                    <td><%= b.getProductName()%></td>
+                    <td><%=b.getMadeIn()%></td>
+                    <td><%= b.getPrice()%></td>
+                    <td><%= b.getStatus()%></td>
                     <td>
                         <a href="#" class="btn btn-sm btn-primary">Edit</a>
                         <a href="#" class="btn btn-sm btn-danger">Delete</a>
                     </td>
 
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="#" class="btn btn-sm btn-danger">Delete</a>
-                    </td>
-                </tr>
+                <%
+                    }
+                %>
             </tbody>
         </table>
     </body>
