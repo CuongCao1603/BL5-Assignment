@@ -25,7 +25,11 @@
                                 <h5 class="text-center text-danger">${failedMsg}</h5>
                                 <c:remove var="failedMsg" scope="session"/>
                             </c:if>
-                            
+                            <c:if test="${not empty succMsg}">
+                                <h5 class="text-center text-success">${succMsg}</h5>
+                                <c:remove var="failedMsg" scope="session"/>
+                            </c:if>
+
                             <form action="login" method="post">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Email address</label>
@@ -36,10 +40,10 @@
                                     <label for="exampleInputPassword1">Password</label>
                                     <input type="password" class="form-control" id="exampleInputPassword1" required="" name="password">
                                 </div>
-<!--                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                </div>-->
+                                <!--                                <div class="form-check">
+                                                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                                                </div>-->
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-primary">Login</button><br>
                                     <a href="register.jsp">Create Account</a>
