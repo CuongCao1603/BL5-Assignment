@@ -147,18 +147,112 @@ public class ProductDAOImpl implements ProductDAO {
         String sql = "DELETE FROM [dbo].[product_dtls]\n"
                 + "      WHERE productId=? ";
         try {
-            conn=new DBConnect().getConnection();
-            ps=conn.prepareStatement(sql);
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(sql);
             ps.setInt(1, id);
-            
-            int i=ps.executeUpdate();
-            if(i==1){
-                f=true;
+
+            int i = ps.executeUpdate();
+            if (i == 1) {
+                f = true;
             }
         } catch (Exception e) {
         }
 
         return f;
+    }
+
+    public List<ProductDtls> getNewProducts() {
+
+        List<ProductDtls> list = new ArrayList<>();
+        ProductDtls b = null;
+
+        String sql = "select * FROM [dbo].[product_dtls] where "
+                + "[productCategory] = ? and [status]= ? "
+                + "order by productId DESC";
+        try {
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "New");
+            ps.setString(2, "Active");
+            int i = 1;
+            rs = ps.executeQuery();
+            while (rs.next() && i <= 4) {
+                list.add(new ProductDtls(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)));
+                i++;
+            }
+        } catch (Exception e) {
+        }
+
+        return list;
+    }
+
+    public List<ProductDtls> getRecentProducts() {
+        List<ProductDtls> list = new ArrayList<>();
+        ProductDtls b = null;
+
+        String sql = "select * FROM [dbo].[product_dtls] where "
+                + "[status]= ? "
+                + "order by productId DESC";
+        try {
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "Active");
+//            ps.setString(2, "Active");
+            int i = 1;
+            rs = ps.executeQuery();
+            while (rs.next() && i <= 4) {
+                list.add(new ProductDtls(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)));
+                i++;
+            }
+        } catch (Exception e) {
+        }
+
+        return list;
+    }
+
+    
+    public List<ProductDtls> getOldProducts() {
+       List<ProductDtls> list = new ArrayList<>();
+        ProductDtls b = null;
+
+        String sql = "select * FROM [dbo].[product_dtls] where "
+                + "[productCategory] = ? and [status]= ? "
+                + "order by productId DESC";
+        try {
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "Old");
+            ps.setString(2, "Active");
+            int i = 1;
+            rs = ps.executeQuery();
+            while (rs.next() && i <= 4) {
+                list.add(new ProductDtls(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)));
+                i++;
+            }
+        } catch (Exception e) {
+        }
+        return list;
     }
 
 }

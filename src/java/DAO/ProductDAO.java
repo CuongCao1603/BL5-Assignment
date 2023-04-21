@@ -18,6 +18,9 @@ public interface ProductDAO {
     public ProductDtls getProductById(int id);
     public boolean updateEditProducts(ProductDtls p);
     public boolean deleteBooks(int id);
+    public List<ProductDtls> getNewProducts();
+    public List<ProductDtls> getRecentProducts();
+    public List<ProductDtls> getOldProducts();
     
     
 }
