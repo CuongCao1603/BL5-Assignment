@@ -51,24 +51,24 @@
                             <img alt="" src="kithchenware/<%=p.getPhotoName()%>" style="width: 200px;height: 150px"
                                  class="img-thumblin">
                             <p><%=p.getProductName()%></p>
-                            <p><%=p.getMadeIn()%></p>
+                            <p>Made in: <%=p.getMadeIn()%></p>
                             <%
                                 if(!p.getProductCategory().equals("Old")){
                             %>
-                            <p>Categories:<%=p.getProductCategory()%></p>
+                            <p>Categories: <%=p.getProductCategory()%></p>
                             <div class="row ml-2">
 
                                 <a href="" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
                                 <a href="" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
-                                <a href="" class="btn btn-danger btn-sm ml-1"><%=p.getPrice()%></a>
+                                <a href="" class="btn btn-danger btn-sm ml-1"><%=p.getPrice()%> $</a>
                             </div>
                             <%}else{
                             %>
-                            <p>Categories:<%=p.getProductCategory()%></p>
+                            <p>Categories: <%=p.getProductCategory()%></p>
                             <div class="row ml-5">
                                 <!--<a href="" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>-->
                                 <a href="" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
-                                <a href="" class="btn btn-danger btn-sm ml-1"><%=p.getPrice()%></a>
+                                <a href="" class="btn btn-danger btn-sm ml-1"><%=p.getPrice()%> $</a>
                             </div>
                             <%
                             }%> 
@@ -81,7 +81,7 @@
                 %>
             </div >
             <div class="text-center mt-1">
-                <a href="" class="btn btn-danger btn-sm text-white">View All</a>
+                <a href="all_recent_product.jsp" class="btn btn-danger btn-sm text-white">View All</a>
             </div>
         </div>
 
@@ -102,8 +102,8 @@
                             <img alt="" src="kithchenware/<%=p.getPhotoName()%>" style="width: 200px;height: 150px"
                                  class="img-thumblin">
                             <p><%=p.getProductName()%></p>
-                            <p><%= p.getMadeIn()%></p>
-                            <p>Categories:<%=p.getProductCategory()%></p>
+                            <p>Made in: <%= p.getMadeIn()%></p>
+                            <p>Categories: <%=p.getProductCategory()%></p>
                             <div class="row ml-1">
                                 <a href="" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
                                 <a href="" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
@@ -117,7 +117,7 @@
                 %>
             </div >
             <div class="text-center mt-1">
-                <a href="" class="btn btn-danger btn-sm text-white">View All</a>
+                <a href="all_new_product.jsp" class="btn btn-danger btn-sm text-white">View All</a>
             </div>
         </div>
 
@@ -139,8 +139,8 @@
                             <img alt="" src="kithchenware/<%=p.getPhotoName()%>" style="width: 200px;height: 150px"
                                  class="img-thumblin">
                             <p><%=p.getProductName()%></p>
-                            <p><%=p.getMadeIn()%></p>
-                            <p><%=p.getProductCategory()%></p>
+                            <p>Made in: <%=p.getMadeIn()%></p>
+                            <p>Categories: <%=p.getProductCategory()%></p>
                             <div class="row ml-5">
 
                                 <a href="" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
@@ -154,7 +154,7 @@
                 %>
             </div >
             <div class="text-center mt-1">
-                <a href="" class="btn btn-danger btn-sm text-white">View All</a>
+                <a href="all_old_product.jsp" class="btn btn-danger btn-sm text-white">View All</a>
             </div>
         </div>
 

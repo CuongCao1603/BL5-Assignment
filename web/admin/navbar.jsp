@@ -11,13 +11,6 @@
                 KitchenWare
             </h3>
         </div> 
-<!--        <div class="col-md-6">
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
-            </form>
-        </div>-->
-
         <div class="col-md-3">
             <c:if test="${not empty userobj}">
                 <a  class="btn btn-success"><i class="fas fa-user"></i> ${ userobj.name}</a>
