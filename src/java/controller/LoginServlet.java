@@ -95,14 +95,14 @@ public class LoginServlet extends HttpServlet {
                 if (dao.login(email, password)!= null) {
                     System.out.println("User value: "+dao.login(email, password));
                     session.setAttribute("userobj", dao.login(email, password));
-                    response.sendRedirect("home.jsp");
+                    response.sendRedirect("index.jsp");
                 }else{
                     System.out.println("User value: "+dao.login(email, password));
                     session.setAttribute("failedMsg", "Email & Password Invalid");
                     response.sendRedirect("login.jsp");
                 }
 
-                response.sendRedirect("home.jsp");
+//                response.sendRedirect("home.jsp");
             }
 
         } catch (Exception e) {
