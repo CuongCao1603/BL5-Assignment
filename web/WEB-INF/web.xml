@@ -24,6 +24,10 @@
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoveProductServlet</servlet-name>
+        <servlet-class>controller.RemoveProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -47,6 +51,10 @@
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/logout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveProductServlet</servlet-name>
+        <url-pattern>/remove_product</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

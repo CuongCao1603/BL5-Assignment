@@ -3,8 +3,12 @@
     Created on : Apr 22, 2023, 6:03:32 PM
     Author     : Admin
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DAO.CartDAOImpl" %>
+<%@page import="model.Cart" %>
+<%@page import="model.User" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,6 +18,10 @@
     </head>
     <body style="background-color: #f0f1f2">
         <%@include file="all_component/navbar.jsp" %>
+
+        <c:if test="${empty userobj}">
+            <c:redirect url="login.jsp"></c:redirect>
+        </c:if>
         <div class="container">
             <div class="row p-2">
                 <div class="col-md-6">
@@ -23,31 +31,37 @@
                             <table class="table table-striped">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">First</th>
-                                        <th scope="col">Last</th>
-                                        <th scope="col">Handle</th>
+                                        <th scope="col">Product Name</th>
+                                        <th scope="col">Made in</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <%
+                                        User u=(User) session.getAttribute("userobj");
+                                        
+                                        CartDAOImpl dao=new CartDAOImpl();
+                                       List<Cart> cart = dao.getProductByUser(u.getId());
+                                       Double totalPrice=0.00;
+                                       for(Cart c:cart){
+                                       totalPrice=c.getTotalPrice();
+                                    %>
                                     <tr>
-                                        <th scope="row">1</th>
-                                        <td>Mark</td>
-                                        <td>Otto</td>
-                                        <td>@mdo</td>
+                                        <th scope="row"><%=c.getProductName()%></th>
+                                        <td><%=c.getMadeIn()%></td>
+                                        <td><%=c.getPrice()%> $</td>
+                                        <td>
+                                            <a href="remove_product?pid=<%=c.getPid()%>" class="btn btn-sm btn-danger">Remove</a>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>Jacob</td>
-                                        <td>Thornton</td>
-                                        <td>@fat</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>Larry</td>
-                                        <td>the Bird</td>
-                                        <td>@twitter</td>
-                                    </tr>
+                                    <%
+                                        }
+                                    %>
+                                <td>Total Price</td>
+                                <td></td>
+                                <td></td>
+                                <td><%=totalPrice%> $</td>
                                 </tbody>
                             </table>
                         </div>
@@ -102,7 +116,7 @@
                                         <input type="text" class="form-control" id="inputPassword4">
                                     </div>
                                 </div>
-                                
+
                                 <div class="form-group">
                                     <label>Payment Mode</label>
                                     <select class="form-control">
