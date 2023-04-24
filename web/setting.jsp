@@ -10,7 +10,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Setting Page</title>
         <%@include file="all_component/allCss.jsp"%>
         <style type="text/css">
             a{
@@ -32,7 +32,7 @@
         <div class="container">
             <h3 class="text-center">Hello, ${userobj.name}</h3>
             <div class="row p-5">
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <a href="sell_product.jsp">
                         <div class="card">
                             <div class="card-body text-center">
@@ -45,8 +45,22 @@
                         </div>
                     </a>
                 </div>
+                
+                 <div class="col-md-4">
+                    <a href="old_product.jsp">
+                        <div class="card">
+                            <div class="card-body text-center">
 
-                <div class="col-md-6">
+                                <div class="text-primary">
+                                    <i class="fas fa-book-open fa-3x"></i>
+                                </div>
+                                <h4>Old Product</h4>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-md-4">
                     <a href="edit_profile.jsp">
                         <div class="card">
                             <div class="card-body text-center">

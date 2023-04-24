@@ -66,7 +66,7 @@
                                         <td><%=c.getMadeIn()%></td>
                                         <td><%=c.getPrice()%> $</td>
                                         <td>
-                                            <a href="remove_product?pid=<%=c.getPid()%>&&uid=<%=c.getUid()%>" class="btn btn-sm btn-danger">Remove</a>
+                                            <a href="remove_product?pid=<%=c.getPid()%>&&uid=<%=c.getUid()%>&&cid=<%=c.getCid()%>" class="btn btn-sm btn-danger">Remove</a>
                                         </td>
                                     </tr>
                                     <%

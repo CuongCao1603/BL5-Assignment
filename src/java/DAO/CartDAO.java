@@ -15,7 +15,7 @@ import model.ProductDtls;
 public interface CartDAO {
     public boolean addCart(Cart c);
     public List<Cart> getProductByUser(int userId);
-    public boolean deleteProduct(int pid,int uid);
+    public boolean deleteProduct(int pid,int uid,int cid);
     
             
             

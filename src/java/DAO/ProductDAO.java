@@ -24,6 +24,7 @@ public interface ProductDAO {
     public List<ProductDtls> getAllRecentProduct();
     public List<ProductDtls> getAllNewProduct();
     public List<ProductDtls> getAllOldProduct();
-    
+    public List<ProductDtls> getProductByOld(String email,String cate);
+    public boolean oldProductDelete(String email,String cat,int id);
     
 }
