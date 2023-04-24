@@ -22,6 +22,20 @@
         <c:if test="${empty userobj}">
             <c:redirect url="login.jsp"></c:redirect>
         </c:if>
+
+        <c:if test="${not empty succMsg}">
+            <div class="alert alert-success" role="alert">
+                ${succMsg}
+                <c:remove var="succMsg" scope="session"/>
+            </div>
+        </c:if>
+        
+          <c:if test="${not empty failedMsg}">
+            <div class="alert alert-danger" role="alert">
+                ${failedMsg}
+                <c:remove var="failedMsg" scope="session"/>
+            </div>
+        </c:if>
         <div class="container">
             <div class="row p-2">
                 <div class="col-md-6">
@@ -52,7 +66,7 @@
                                         <td><%=c.getMadeIn()%></td>
                                         <td><%=c.getPrice()%> $</td>
                                         <td>
-                                            <a href="remove_product?pid=<%=c.getPid()%>" class="btn btn-sm btn-danger">Remove</a>
+                                            <a href="remove_product?pid=<%=c.getPid()%>&&uid=<%=c.getUid()%>" class="btn btn-sm btn-danger">Remove</a>
                                         </td>
                                     </tr>
                                     <%
@@ -76,18 +90,18 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Name</label>
-                                        <input type="text" class="form-control" id="inputEmail4" value="">
+                                        <input type="text" class="form-control" id="inputEmail4" value="<%=u.getName()%>" readonly="">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Email</label>
-                                        <input type="email" class="form-control" id="inputPassword4">
+                                        <input type="email" class="form-control" id="inputPassword4" value="<%=u.getEmail()%>" readonly="">
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Phone Number</label>
-                                        <input type="number" class="form-control" id="inputEmail4" >
+                                        <input type="number" class="form-control" id="inputEmail4" value="<%=u.getPhno()%>" readonly="" >
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Address</label>

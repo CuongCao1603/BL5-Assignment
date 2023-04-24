@@ -87,4 +87,25 @@ public class CartDAOImpl implements CartDAO {
         return list;
     }
 
+   
+    public boolean deleteProduct(int pid,int uid) {
+      boolean f=false;
+      String sql="delete from [cart] where pid=? and uid=?";
+        try {
+            conn=new DBConnect().getConnection();
+            ps=conn.prepareStatement(sql);
+            ps.setInt(1, pid);
+            ps.setInt(2, uid);
+            int i=ps.executeUpdate();
+            if(i==1){
+                f=true;
+            }
+        } catch (Exception e) {
+        }
+        
+        return f;
+    }
+
+    
+
 }
