@@ -4,6 +4,7 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -23,8 +24,13 @@
         </style>
     </head>
     <body style="background-color: #f7f7f7">
+        <c:if test="${empty userobj}">
+            <c:redirect url="login.jsp"/>
+        </c:if>
+        <%@include file="all_component/navbar.jsp" %>
+
         <div class="container">
-            <h3 class="text-center">Hello, Cuong</h3>
+            <h3 class="text-center">Hello, ${userobj.name}</h3>
             <div class="row p-5">
                 <div class="col-md-6">
                     <a href="sell_product.jsp">
@@ -39,7 +45,7 @@
                         </div>
                     </a>
                 </div>
-                
+
                 <div class="col-md-6">
                     <a href="edit_profile.jsp">
                         <div class="card">
@@ -53,7 +59,7 @@
                         </div>
                     </a>
                 </div>
-                
+
                 <div class="col-md-4 mt-3">
                     <a href="user_address.jsp">
                         <div class="card">
@@ -68,7 +74,7 @@
                         </div>
                     </a>
                 </div>
-                
+
                 <div class="col-md-4 mt-3">
                     <a href="order.jsp">
                         <div class="card">
@@ -83,7 +89,7 @@
                         </div>
                     </a>
                 </div>
-                
+
                 <div class="col-md-4 mt-3">
                     <a href="helpline.jsp">
                         <div class="card">
@@ -101,8 +107,8 @@
 
             </div>
         </div>
-        
-        
+
+
     </body>
     <%@include file="all_component/footer.jsp" %>
 </html>

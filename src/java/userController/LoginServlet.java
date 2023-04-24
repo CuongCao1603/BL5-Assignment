@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package userController;
 
-import DAO.ProductDAOImpl;
+import DAO.UserDAOImpl;
+import context.DBConnect;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,12 +13,13 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import model.User;
 
 /**
  *
  * @author Admin
  */
-public class ProductsDeleteServlet extends HttpServlet {
+public class LoginServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,10 +38,10 @@ public class ProductsDeleteServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ProductsDeleteServlet</title>");
+            out.println("<title>Servlet LoginServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ProductsDeleteServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -57,25 +59,7 @@ public class ProductsDeleteServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-        try {
-            int id = Integer.parseInt(request.getParameter("id"));
-            
-            ProductDAOImpl dao=new ProductDAOImpl();
-            boolean f=dao.deleteBooks(id);
-            HttpSession session=request.getSession();
-            
-            if(f){
-                session.setAttribute("succMsg", "Product Delete Successfully..");
-                response.sendRedirect("admin/all_products.jsp");
-            }else{
-                session.setAttribute("failedMsg", "Something wrong on server");
-                response.sendRedirect("admin/all_products.jsp");
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        processRequest(request, response);
     }
 
     /**
@@ -89,7 +73,41 @@ public class ProductsDeleteServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        try {
+            UserDAOImpl dao = new UserDAOImpl();
+
+            HttpSession session = request.getSession();
+
+            String email = request.getParameter("email");
+            String password = request.getParameter("password");
+            System.out.println("Email: "+email);
+            System.out.println("Pass: "+password);
+
+            if ("admin@gmail.com".equals(email) && "admin".equals(password)) {
+                User us=new User();
+                us.setName("Admin");
+                session.setAttribute("userobj", us);
+                response.sendRedirect("admin/adminHome.jsp");
+            } else {
+                dao.login(email, password);
+                
+                if (dao.login(email, password)!= null) {
+                    System.out.println("User value: "+dao.login(email, password));
+                    session.setAttribute("userobj", dao.login(email, password));
+                    response.sendRedirect("index.jsp");
+                }else{
+                    System.out.println("User value: "+dao.login(email, password));
+                    session.setAttribute("failedMsg", "Email & Password Invalid");
+                    response.sendRedirect("login.jsp");
+                }
+
+//                response.sendRedirect("home.jsp");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

@@ -14,8 +14,8 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>All Old Product</title>
         <%@include file="all_component/allCss.jsp"%>
-         <style type="text/css">
-            
+        <style type="text/css">
+
             .crd-ho:hover{
                 background-color: #ededf0;
             }
@@ -25,10 +25,10 @@
         <%@include file="all_component/navbar.jsp" %>
         <div class="container-fluid">
             <div class="row p-3">
-               <%
-                 ProductDAOImpl dao3=new ProductDAOImpl();
-                 List<ProductDtls> list3=dao3.getOldProducts();
-                 for(ProductDtls p:list3){
+                <%
+                  ProductDAOImpl dao3=new ProductDAOImpl();
+                  List<ProductDtls> list3=dao3.getOldProducts();
+                  for(ProductDtls p:list3){
                 %>
 
                 <div class="col-md-3">
@@ -40,8 +40,8 @@
                             <p>Made in: <%=p.getMadeIn()%></p>
                             <p>Categories: <%=p.getProductCategory()%></p>
                             <div class="row ml-5">
-
-                                <a href="" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
+                                <!--<a href="" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>-->
+                                <a  href="view_products.jsp?pid=<%=p.getProductId()%>" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
                                 <a href="" class="btn btn-danger btn-sm ml-1"><%=p.getPrice()%> $</a>
                             </div>
                         </div>

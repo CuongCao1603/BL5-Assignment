@@ -2,11 +2,11 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
-        <servlet-class>controller.RegisterServlet</servlet-class>
+        <servlet-class>userController.RegisterServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>controller.LoginServlet</servlet-class>
+        <servlet-class>userController.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddProductServlet</servlet-name>
@@ -14,19 +14,23 @@
     </servlet>
     <servlet>
         <servlet-name>EditProductsServlet</servlet-name>
-        <servlet-class>controller.EditProductsServlet</servlet-class>
+        <servlet-class>adminController.EditProductsServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProductsDeleteServlet</servlet-name>
-        <servlet-class>controller.ProductsDeleteServlet</servlet-class>
+        <servlet-class>adminController.ProductsDeleteServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>controller.LogoutServlet</servlet-class>
+        <servlet-class>userController.LogoutServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>RemoveProductServlet</servlet-name>
-        <servlet-class>controller.RemoveProductServlet</servlet-class>
+        <servlet-class>userController.RemoveProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddOldProduct</servlet-name>
+        <servlet-class>userController.AddOldProduct</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>RemoveProductServlet</servlet-name>
         <url-pattern>/remove_product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddOldProduct</servlet-name>
+        <url-pattern>/add_old_product</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

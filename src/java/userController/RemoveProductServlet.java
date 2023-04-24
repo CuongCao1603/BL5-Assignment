@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package userController;
 
-import DAO.ProductDAOImpl;
+import DAO.CartDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,13 +12,12 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import model.ProductDtls;
 
 /**
  *
  * @author Admin
  */
-public class EditProductsServlet extends HttpServlet {
+public class RemoveProductServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +36,10 @@ public class EditProductsServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditProductsServlet</title>");
+            out.println("<title>Servlet RemoveProductServlet</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditProductsServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet RemoveProductServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,6 +58,19 @@ public class EditProductsServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        int pid = Integer.parseInt(request.getParameter("pid"));
+        int uid=Integer.parseInt(request.getParameter("uid"));
+        CartDAOImpl dao=new CartDAOImpl();
+        boolean f = dao.deleteProduct(pid,uid);
+        HttpSession session=request.getSession();
+        
+        if(f){
+            session.setAttribute("succMsg", "Product removed from Cart");
+            response.sendRedirect("checkout.jsp");
+        }else{
+            session.setAttribute("failedMsg", "Something wrong on server");
+            response.sendRedirect("checkout.jsp");
+        }
         
     }
 
@@ -73,38 +85,7 @@ public class EditProductsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            int id=Integer.parseInt(request.getParameter("id"));
-            String productName = request.getParameter("pname");
-            String madeIn = request.getParameter("madein");
-            String price = (request.getParameter("price"));
-            String categories = request.getParameter("categories");
-            String status = request.getParameter("status");
-            
-            ProductDtls p=new ProductDtls();
-            p.setProductId(id);
-            p.setProductName(productName);
-            p.setMadeIn(madeIn);
-            p.setPrice(price);
-            p.setProductCategory(categories);
-            p.setStatus(status);
-            
-            ProductDAOImpl dao=new ProductDAOImpl();
-            boolean f=dao.updateEditProducts(p);
-            
-            HttpSession session=request.getSession();
-            
-            if(f){
-                session.setAttribute("succMsg", "Product Update Successfully..");
-                response.sendRedirect("admin/all_products.jsp");
-            }else{
-                session.setAttribute("failedMsg", "Something wrong on server");
-                response.sendRedirect("admin/all_products.jsp");
-            }
-            
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        processRequest(request, response);
     }
 
     /**
