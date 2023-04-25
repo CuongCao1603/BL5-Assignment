@@ -36,6 +36,10 @@
         <servlet-name>DeleteOldProduct</servlet-name>
         <servlet-class>userController.DeleteOldProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateProfileServlet</servlet-name>
+        <servlet-class>userController.UpdateProfileServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>DeleteOldProduct</servlet-name>
         <url-pattern>/delete_old_product</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProfileServlet</servlet-name>
+        <url-pattern>/update_profile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

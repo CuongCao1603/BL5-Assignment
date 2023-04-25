@@ -29,10 +29,10 @@ public class UserDAOImpl {
 
 //   
     public void userRegister(String name, String email, String phno, String password) {
-        String sql = "insert into [user] ([name]\n" +
-"           ,[email]\n" +
-"           ,[phno]\n" +
-"           ,[password])"
+        String sql = "insert into [user] ([name]\n"
+                + "           ,[email]\n"
+                + "           ,[phno]\n"
+                + "           ,[password])"
                 + " values(?,?,?,?)";
 //        boolean f = false;
         try {
@@ -58,7 +58,7 @@ public class UserDAOImpl {
     }
 
     public User login(String email, String password) {
-        User us=null;
+        User us = null;
         String sql = "select * from [user] \n"
                 + "where [email] = ?\n"
                 + "and [password] = ?";
@@ -67,9 +67,9 @@ public class UserDAOImpl {
             ps = conn.prepareStatement(sql);
             ps.setString(1, email);
             ps.setString(2, password);
-            rs=ps.executeQuery();
-            
-            while(rs.next()){
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
 //                us=new User();
                 return new User(rs.getInt(1),
                         rs.getString(2),
@@ -85,6 +85,53 @@ public class UserDAOImpl {
         } catch (Exception e) {
         }
         return null;
+    }
+
+    public boolean checkPassword(int id, String pass) {
+        boolean f = false;
+        String sql = "select*from [user] where id=? and password=?";
+        try {
+
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(sql);
+
+            ps.setInt(1, id);
+            ps.setString(2, pass);
+            
+            rs=ps.executeQuery();
+            while(rs.next()){
+                f=true;
+            }
+        } catch (Exception e) {
+        }
+        return f;
+    }
+    
+    public boolean updateProfile(User us){
+          String sql = "update [user] set [name]=?\n"
+                + "           ,[email]=?\n"
+                + "           ,[phno]=?\n"
+                + "           where [id]=?";
+               
+        boolean f = false;
+        try {
+
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, us.getName());
+            ps.setString(2, us.getEmail());
+            ps.setString(3, us.getPhno());
+            ps.setInt(4, us.getId());
+
+            int i=ps.executeUpdate();
+            if(i==1){
+                f=true;
+            }
+            System.err.println("tai len data");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return f;
     }
 
 }

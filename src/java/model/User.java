@@ -12,8 +12,8 @@ public class User {
     private int id;
     private String name;
     private String email;
-    private String password;
     private String phno;
+    private String password;
     private String address;
     private String landmark;
     private String city;
@@ -22,27 +22,30 @@ public class User {
 
     public User() {
     }
-      public User( String name, String email, String password,String phno) {
+      public User( String name, String email,String phno,String password) {
        
         this.name = name;
         this.email = email;
-        this.password = password;
         this.phno = phno;
+        this.password = password;
+        
        
     }
 
-    public User(int id, String name, String email, String password, String phno, String address, String landmark, String city, String state, String pincode) {
+    public User(int id, String name, String email, String phno, String password, String address, String landmark, String city, String state, String pincode) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.password = password;
         this.phno = phno;
+        this.password = password;
         this.address = address;
         this.landmark = landmark;
         this.city = city;
         this.state = state;
         this.pincode = pincode;
     }
+
+   
     
     
 
