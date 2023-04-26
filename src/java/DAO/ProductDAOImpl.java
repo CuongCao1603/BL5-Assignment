@@ -82,7 +82,7 @@ public class ProductDAOImpl implements ProductDAO {
         return list;
     }
 
-    @Override
+    
     public ProductDtls getProductById(int id) {
 //        ProductDtls b=null;
         String sql = "select * FROM [dbo].[product_dtls] where productId=?";

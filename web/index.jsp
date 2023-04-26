@@ -59,14 +59,13 @@
                             <div class="row ml-2">
 
                                 <a href="" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
-                                <a href="" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
+                                <a href="view_products.jsp?pid=<%=p.getProductId()%>" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
                                 <a href="" class="btn btn-danger btn-sm ml-1"><%=p.getPrice()%> $</a>
                             </div>
                             <%}else{
                             %>
                             <p>Categories: <%=p.getProductCategory()%></p>
                             <div class="row ml-5">
-                                <!--<a href="" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>-->
                                 <a href="view_products.jsp?pid=<%=p.getProductId()%>" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
                                 <a href="" class="btn btn-danger btn-sm ml-1"><%=p.getPrice()%> $</a>
                             </div>
@@ -106,7 +105,7 @@
                             <p>Categories: <%=p.getProductCategory()%></p>
                             <div class="row ml-1">
                                 <a href="" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
-                                <a href="" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
+                                <a href="view_products.jsp?pid=<%=p.getProductId()%>" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
                                 <a href="" class="btn btn-danger btn-sm ml-1"><%=p.getPrice()%> $</a>
                             </div>
                         </div>
@@ -143,7 +142,7 @@
                             <p>Categories: <%=p.getProductCategory()%></p>
                             <div class="row ml-5">
 
-                                <a href="" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
+                                <a href="view_products.jsp?pid=<%=p.getProductId()%>" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
                                 <a href="" class="btn btn-danger btn-sm ml-1"><%=p.getPrice()%> $</a>
                             </div>
                         </div>
