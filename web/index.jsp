@@ -8,6 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="DAO.ProductDAOImpl" %>
 <%@page import="model.ProductDtls" %>
+<%@page import="model.User" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -29,6 +30,11 @@
         </style>
     </head>
     <body style="background-color: #f0f0f2">
+
+        <%
+            User u=(User)session.getAttribute("userobj");
+        %>
+
         <%@include file="all_component/navbar.jsp" %>
         <div class="container-fluid back-img">
             <h2 class="text-center text-danger">KitchenWare Shop</h2>
@@ -104,7 +110,14 @@
                             <p>Made in: <%= p.getMadeIn()%></p>
                             <p>Categories: <%=p.getProductCategory()%></p>
                             <div class="row ml-1">
-                                <a href="" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
+                                <%if(u==null){
+                                %>
+                                <a href="login.jsp" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
+                                <%}else{%>
+                                <a href="cart?pid=<%=p.getProductId()%>&&uid=<%=u.getId()%>" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
+                                <%}
+                                %>
+
                                 <a href="view_products.jsp?pid=<%=p.getProductId()%>" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
                                 <a href="" class="btn btn-danger btn-sm ml-1"><%=p.getPrice()%> $</a>
                             </div>

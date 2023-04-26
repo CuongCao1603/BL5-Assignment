@@ -3,14 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/src/java/model/Product_Order.java</file>
-            <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/src/java/userController/OrderServlet.java</file>
+            <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/web/all_component/style.css</file>
             <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/src/java/DAO/ProductOrderImpl.java</file>
+            <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/web/all_new_product.jsp</file>
             <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/src/java/DAO/CartDAOImpl.java</file>
-            <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/web/setting.jsp</file>
-            <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/web/checkout.jsp</file>
-            <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/src/java/DAO/ProductOrderDAO.java</file>
-            <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/web/old_product.jsp</file>
+            <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/src/java/DAO/ProductDAOImpl.java</file>
+            <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/web/index.jsp</file>
+            <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/src/java/userController/CartServlet.java</file>
+            <file>file:/D:/PRJ301_SP23_BL5_Ass/PRJ301_SP23_BL5_Assigment/web/login.jsp</file>
         </group>
     </open-files>
 </project-private>
