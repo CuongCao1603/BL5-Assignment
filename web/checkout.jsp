@@ -24,14 +24,14 @@
         </c:if>
 
         <c:if test="${not empty succMsg}">
-            <div class="alert alert-success" role="alert">
+            <div class="alert alert-success text-center" role="alert">
                 ${succMsg}
                 <c:remove var="succMsg" scope="session"/>
             </div>
         </c:if>
         
           <c:if test="${not empty failedMsg}">
-            <div class="alert alert-danger" role="alert">
+            <div class="alert alert-danger text-center" role="alert">
                 ${failedMsg}
                 <c:remove var="failedMsg" scope="session"/>
             </div>
@@ -55,7 +55,7 @@
                                     <%
                                         User u=(User) session.getAttribute("userobj");
                                         
-                                        CartDAOImpl dao=new CartDAOImpl();
+                                       CartDAOImpl dao=new CartDAOImpl();
                                        List<Cart> cart = dao.getProductByUser(u.getId());
                                        Double totalPrice=0.00;
                                        for(Cart c:cart){
@@ -86,56 +86,59 @@
                     <div class="card">
                         <div class="card-body">
                             <h3 class="text-center text-success">Your Details for Order</h3>
-                            <form>
+                            <form action="order" method="post">
+                                
+                                <input type="hidden" value="${userobj.id}" name="id">
+                                 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Name</label>
-                                        <input type="text" class="form-control" id="inputEmail4" value="<%=u.getName()%>" readonly="">
+                                        <input type="text" name="username" class="form-control" id="inputEmail4" value="${userobj.name}">
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Email</label>
-                                        <input type="email" class="form-control" id="inputPassword4" value="<%=u.getEmail()%>" readonly="">
+                                        <input type="email" name="email" class="form-control" id="inputPassword4" value="${userobj.email}">
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Phone Number</label>
-                                        <input type="number" class="form-control" id="inputEmail4" value="<%=u.getPhno()%>" readonly="" >
+                                        <input type="number" name="phno" class="form-control" id="inputEmail4" value="${userobj.phno}" >
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Address</label>
-                                        <input type="text" class="form-control" id="inputPassword4">
+                                        <input type="text" name="address" class="form-control" id="inputPassword4">
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">Landmark</label>
-                                        <input type="text" class="form-control" id="inputEmail4" >
+                                        <input type="text" name="landmark" class="form-control" id="inputEmail4" >
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">City</label>
-                                        <input type="text" class="form-control" id="inputPassword4">
+                                        <input type="text" name="city" class="form-control" id="inputPassword4">
                                     </div>
                                 </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputEmail4">State</label>
-                                        <input type="text" class="form-control" id="inputEmail4" >
+                                        <input type="text" name="state" class="form-control" id="inputEmail4" >
                                     </div>
                                     <div class="form-group col-md-6">
                                         <label for="inputPassword4">Pin code</label>
-                                        <input type="text" class="form-control" id="inputPassword4">
+                                        <input type="text" name="pincocde" class="form-control" id="inputPassword4">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
                                     <label>Payment Mode</label>
-                                    <select class="form-control">
-                                        <option>--Select--</option>
-                                        <option>Cash On Dlivery</option>
+                                    <select class="form-control" name="payment">
+                                        <option value="noselect">--Select--</option>
+                                        <option value="COD">Cash On Dlivery</option>
                                     </select>
                                 </div>
                                 <div class="text-center">
