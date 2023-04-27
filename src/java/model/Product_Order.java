@@ -21,34 +21,7 @@ public class Product_Order {
     private String paymentType;
 
     public Product_Order() {
-    }
-
-//    public Product_Order( String orderId, String userName, String email, String phno, String fulladd, String productName, String madeIn, String price, String paymentType) {
-//        this.orderId = orderId;
-//        this.userName = userName;
-//        this.email = email;
-//        this.phno = phno;
-//        this.fulladd = fulladd;
-//        this.productName = productName;
-//        this.madeIn = madeIn;
-//        this.price = price;
-//        this.paymentType = paymentType;
-//    }
-//
-//    public Product_Order(int id, String orderId, String userName, String email, String phno, String fulladd, String productName, String madeIn, String price, String paymentType) {
-//        this.id = id;
-//        this.orderId = orderId;
-//        this.userName = userName;
-//        this.email = email;
-//        this.phno = phno;
-//        this.fulladd = fulladd;
-//        this.productName = productName;
-//        this.madeIn = madeIn;
-//        this.price = price;
-//        this.paymentType = paymentType;
-//    }
-    
-    
+    }   
 
     public String getProductName() {
         return productName;

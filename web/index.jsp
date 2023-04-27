@@ -3,7 +3,7 @@
     Created on : Apr 12, 2023, 10:47:54 PM
     Author     : Admin
 --%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
 <%@page import="DAO.ProductDAOImpl" %>
@@ -64,7 +64,13 @@
                             <p>Categories: <%=p.getProductCategory()%></p>
                             <div class="row ml-2">
 
-                                <a href="" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
+                                <%if(u==null){
+                                %>
+                                <a href="login.jsp" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
+                                <%}else{%>
+                                <a href="cart?pid=<%=p.getProductId()%>&&uid=<%=u.getId()%>" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
+                                <%}
+                                %>
                                 <a href="view_products.jsp?pid=<%=p.getProductId()%>" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
                                 <a href="" class="btn btn-danger btn-sm ml-1"><%=p.getPrice()%> $</a>
                             </div>

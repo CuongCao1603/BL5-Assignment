@@ -79,8 +79,8 @@ public class OrderServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            
-            HttpSession session=request.getSession();
+
+            HttpSession session = request.getSession();
             int id = Integer.parseInt(request.getParameter("id"));
 
             String name = request.getParameter("username");
@@ -99,43 +99,47 @@ public class OrderServlet extends HttpServlet {
 
             CartDAOImpl dao = new CartDAOImpl();
             List<Cart> plist = dao.getProductByUser(id);
-            ProductOrderImpl dao2 = new ProductOrderImpl();
-            
+            if (plist.isEmpty()) {
+                session.setAttribute("failedMsg", "Add Item");
+                response.sendRedirect("checkout.jsp");
+            } else {
+                ProductOrderImpl dao2 = new ProductOrderImpl();
+
 //            for (Cart cart : plist) {
 //                System.out.println(cart.getProductName());
 //            }
-            
-            Product_Order o = null;
-            
-            ArrayList<Product_Order> orderList = new ArrayList<Product_Order>(); 
-            Random r = new Random();
-            
-            for (Cart c : plist) {
-                o=new Product_Order();
-                o.setOrderId("PRODUCT-ORD-00"+r.nextInt(1000));
-                o.setUserName(name);
-                o.setEmail(email);
-                o.setFulladd(fullAdd);
-                o.setPhno(phno);
-                o.setProductName(c.getProductName());
-                o.setMadeIn(c.getMadeIn());
-                o.setPrice(c.getPrice() + "");
-                o.setPaymentType(paymentType);
-                
-                orderList.add(o);
-                System.out.println("List: "+o.getPrice());
-            }
-            
-            if ("noselect".equals(paymentType)) {
-                session.setAttribute("failedMsg", "Choose Payment Method");
-                response.sendRedirect("checkout.jsp");
-            } else {
-                boolean f = dao2.saveOrder(orderList);
-                if (f) {
-                    response.sendRedirect("order_success.jsp");
+                Product_Order o = null;
+
+                ArrayList<Product_Order> orderList = new ArrayList<Product_Order>();
+                Random r = new Random();
+
+                for (Cart c : plist) {
+                    o = new Product_Order();
+                    o.setOrderId("PRODUCT-ORD-00" + r.nextInt(1000));
+                    o.setUserName(name);
+                    o.setEmail(email);
+                    o.setFulladd(fullAdd);
+                    o.setPhno(phno);
+                    o.setProductName(c.getProductName());
+                    o.setMadeIn(c.getMadeIn());
+                    o.setPrice(c.getPrice() + "");
+                    o.setPaymentType(paymentType);
+
+                    orderList.add(o);
+                    System.out.println("List: " + o.getPrice());
+                }
+
+                if ("noselect".equals(paymentType)) {
+                    session.setAttribute("failedMsg", "Choose Payment Method");
+                    response.sendRedirect("checkout.jsp");
                 } else {
-                    session.setAttribute("failedMsg", "Your Order Failed");
-                response.sendRedirect("checkout.jsp");
+                    boolean f = dao2.saveOrder(orderList);
+                    if (f) {
+                        response.sendRedirect("order_success.jsp");
+                    } else {
+                        session.setAttribute("failedMsg", "Your Order Failed");
+                        response.sendRedirect("checkout.jsp");
+                    }
                 }
             }
         } catch (Exception e) {

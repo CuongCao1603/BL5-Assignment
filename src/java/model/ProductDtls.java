@@ -18,6 +18,7 @@ public class ProductDtls {
     private String status;
     private String photoName;
     private String email;
+    private String location;
 
     public ProductDtls() {
     }
@@ -43,6 +44,27 @@ public class ProductDtls {
         this.photoName = photoName;
         this.email = email;
     }
+
+    public ProductDtls(int productId, String productName, String madeIn, String price, String productCategory, String status, String photoName, String email, String location) {
+        this.productId = productId;
+        this.productName = productName;
+        this.madeIn = madeIn;
+        this.price = price;
+        this.productCategory = productCategory;
+        this.status = status;
+        this.photoName = photoName;
+        this.email = email;
+        this.location = location;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+    
 
     public int getProductId() {
         return productId;

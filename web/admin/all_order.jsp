@@ -4,7 +4,14 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DAO.CartDAOImpl" %>
+<%@page import="DAO.ProductOrderImpl" %>
+<%@page import="model.Cart" %>
+<%@page import="model.User" %>
+<%@page import="model.Product_Order" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,7 +21,7 @@
     </head>
     <body>
         <%@include file="navbar.jsp" %>
-         <c:if test="${empty userobj}">
+        <c:if test="${empty userobj}">
             <c:redirect url="../login.jsp"/>
         </c:if>
         <h3 class="text-center">Hello Admin</h3>
@@ -33,39 +40,27 @@
                 </tr>
             </thead>
             <tbody>
+                <%
+                       User u =(User)session.getAttribute("userobj");
+                       ProductOrderImpl dao=new ProductOrderImpl();
+                       List<Product_Order> plist=dao.getAllOrder();
+                       for(Product_Order p:plist){%>
+
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>Otto</td>
+                    <th scope="row"><%=p.getOrderId()%></th>
+                    <td><%=p.getUserName()%></td>
+                    <td><%=p.getEmail()%></td>
+                    <td><%=p.getFulladd()%></td>
+                    <td><%=p.getPhno()%></td>
+                    <td><%=p.getProductName()%></td>
+                    <td><%=p.getMadeIn()%></td>
+                    <td><%=p.getPrice()%></td>
+                    <td><%=p.getPaymentType()%></td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>Thornton</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td>the Bird</td>
-                </tr>
+
+                <%}
+                %>
+
             </tbody>
         </table>
     </body>

@@ -8,6 +8,7 @@
 <%@page import="java.util.List"%>
 <%@page import="DAO.ProductDAOImpl" %>
 <%@page import="model.ProductDtls" %>
+<%@page import="model.User" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -61,6 +62,10 @@
         </style>
     </head>
     <body>
+        <%
+           User u=(User)session.getAttribute("userobj");
+        %>
+
         <c:if test="${not empty addCart}">
             <div id="toast">${addCart}</div>
             <script type="text/javascript">
@@ -74,6 +79,8 @@
                 }
                 }
             </script>
+
+            <c:remove var="addCart" scope="session"/>
         </c:if>
 
         <%@include file="all_component/navbar.jsp" %>
@@ -93,7 +100,14 @@
                             <p>Made in: <%= p.getMadeIn()%></p>
                             <p>Categories: <%=p.getProductCategory()%></p>
                             <div class="row ml-1">
-                                <a href="" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
+                                <%if(u==null){
+                                %>
+                                <a href="login.jsp" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
+                                <%}else{%>
+                                <a href="cart?pid=<%=p.getProductId()%>&&uid=<%=u.getId()%>" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>
+                                <%}
+                                %>
+                                <!--<a href="" class="btn btn-danger btn-sm ml-2"><i class="fas fa-cart-plus"></i> Add Cart</a>-->
                                 <a href="" class="btn btn-success btn-sm ml-1">View</a><!-- comment -->
                                 <a href="" class="btn btn-danger btn-sm ml-1"><%=p.getPrice()%> $</a>
                             </div>

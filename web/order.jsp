@@ -4,7 +4,14 @@
     Author     : Admin
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="DAO.CartDAOImpl" %>
+<%@page import="DAO.ProductOrderImpl" %>
+<%@page import="model.Cart" %>
+<%@page import="model.User" %>
+<%@page import="model.Product_Order" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,6 +21,9 @@
     </head>
     <body>
         <%@include file="all_component/navbar.jsp" %>
+        <c:if test="${empty userobj}">
+            <c:redirect url="login.jsp"></c:redirect>
+        </c:if>
         <div class="container p-1">
             <h3 class="text-center text-primary">Your Order</h3>
             <table class="table table-striped mt-3">
@@ -28,15 +38,27 @@
                     </tr>
                 </thead>
                 <tbody>
+
+                    <%
+                        User u =(User)session.getAttribute("userobj");
+                        ProductOrderImpl dao=new ProductOrderImpl();
+                        List<Product_Order> plist=dao.getProduct(u.getEmail());
+                        for(Product_Order p:plist)
+                    {%>
+
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
+                        <th scope="row"><%=p.getOrderId()%></th>
+                        <td><%=p.getUserName()%></td>
+                        <td><%=p.getProductName()%></td>
+                        <td><%=p.getMadeIn()%></td>
+                        <td><%=p.getPrice()%></td>
+                        <td><%=p.getPaymentType()%></td>
                     </tr>
-                   
+
+                    <%}
+                    %>
+
+
                 </tbody>
             </table>
         </div>

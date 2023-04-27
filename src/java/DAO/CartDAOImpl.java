@@ -34,7 +34,7 @@ public class CartDAOImpl implements CartDAO {
                 + "           ,[madeIn]\n"
                 + "           ,[price]\n"
                 + "           ,[total_price])\n"
-                + "     VALUES(?,?,?,?,?,?,?)";
+                + "     VALUES(?,?,?,?,?,?)";
         try {
             conn=new DBConnect().getConnection();
             ps=conn.prepareStatement(sql);

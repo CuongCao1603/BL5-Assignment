@@ -5,23 +5,18 @@
 
 package userController;
 
-import DAO.CartDAOImpl;
-import DAO.ProductDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
-import model.Cart;
-import model.ProductDtls;
 
 /**
  *
  * @author Admin
  */
-public class CartServlet extends HttpServlet {
+public class SearchProductServlet extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -38,10 +33,10 @@ public class CartServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet CartServlet</title>");  
+            out.println("<title>Servlet SearchProductServlet</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet CartServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet SearchProductServlet at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,38 +53,7 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        try {
-            int pid=Integer.parseInt(request.getParameter("pid"));
-            int uid=Integer.parseInt(request.getParameter("uid"));
-            
-            ProductDAOImpl dao=new ProductDAOImpl();
-            ProductDtls p= dao.getProductById(pid);
-            
-            Cart c=new Cart();
-            c.setPid(pid);
-            c.setUid(uid);
-            c.setProductName(p.getProductName());
-            c.setMadeIn(p.getMadeIn());
-            c.setPrice(Double.parseDouble(p.getPrice()));
-            c.setTotalPrice(Double.parseDouble(p.getPrice()));
-            
-            CartDAOImpl dao2=new CartDAOImpl();
-            boolean f=dao2.addCart(c);
-            
-            HttpSession session=request.getSession();
-            
-            if(f){
-                session.setAttribute("addCart", "Product Added to Cart");
-                System.out.println("add cart successfully");
-                response.sendRedirect("all_new_product.jsp");
-            }else{
-                session.setAttribute("failed", "Something Wrong on server");
-                System.out.println("add cart failed");
-                response.sendRedirect("all_new_product.jsp");
-            }
-            
-        } catch (Exception e) {
-        }
+        processRequest(request, response);
     } 
 
     /** 
@@ -102,7 +66,10 @@ public class CartServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            String ch=request.getParameter("ch");
+        } catch (Exception e) {
+        }
     }
 
     /** 

@@ -58,6 +58,7 @@
                                            id="exampleInputPassword1"
                                            value="<%=p.getPrice()%>">
                                 </div>
+                                 
                                 <div class="form-group">
                                     <label for="inputState">
                                         Product Categories

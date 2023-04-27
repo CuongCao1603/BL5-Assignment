@@ -74,7 +74,8 @@ public class ProductDAOImpl implements ProductDAO {
                         rs.getString(5),
                         rs.getString(6),
                         rs.getString(7),
-                        rs.getString(8)));
+                        rs.getString(8),
+                        rs.getString(9)));
             }
         } catch (Exception e) {
         }
@@ -82,7 +83,6 @@ public class ProductDAOImpl implements ProductDAO {
         return list;
     }
 
-    
     public ProductDtls getProductById(int id) {
 //        ProductDtls b=null;
         String sql = "select * FROM [dbo].[product_dtls] where productId=?";
@@ -371,23 +371,56 @@ public class ProductDAOImpl implements ProductDAO {
 
     }
 
-    public boolean oldProductDelete(String email, String cat,int id) {
+    public boolean oldProductDelete(String email, String cat, int id) {
         boolean f = false;
         String sql = "delete from product_dtls where productCategory=? and email=? and productId=?";
         try {
-            conn=new DBConnect().getConnection();
-            ps=conn.prepareStatement(sql);
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(sql);
             ps.setString(1, cat);
             ps.setString(2, email);
             ps.setInt(3, id);
-            
-            int i=ps.executeUpdate();
-            if(i==1){
-                f=true;
+
+            int i = ps.executeUpdate();
+            if (i == 1) {
+                f = true;
             }
         } catch (Exception e) {
         }
         return f;
+    }
+
+    public List<ProductDtls> getProductBySearch(String ch) {
+
+        List<ProductDtls> list = new ArrayList<ProductDtls>();
+        ProductDtls p = null;
+        String sql = "select * from product_dtls where productname like ? or madeIn like ? or"
+                + " productCategory like ? and status =?";
+        try {
+            conn = new DBConnect().getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, "%" + ch + "%");
+            ps.setString(2, "%" + ch + "%");
+            ps.setString(3, "%" + ch + "%");
+            ps.setString(4, "Active");
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                list.add(new ProductDtls(rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8)));
+            }
+
+        } catch (Exception e) {
+        }
+
+        return list;
+
     }
 
 }

@@ -48,6 +48,10 @@
         <servlet-name>CartServlet</servlet-name>
         <servlet-class>userController.CartServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <servlet-class>userController.SearchProductServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterServlet</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -95,6 +99,10 @@
     <servlet-mapping>
         <servlet-name>CartServlet</servlet-name>
         <url-pattern>/cart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductServlet</servlet-name>
+        <url-pattern>/searchProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
